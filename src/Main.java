@@ -1,19 +1,27 @@
 import java.util.Scanner;
 public class Main {
+	private static Scanner input;
+	private static TicTacToe game;
+	private static String player;
+	private static int row, column;
 	
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		TicTacToe game = new TicTacToe();
+		input = new Scanner(System.in);
+		game = new TicTacToe();
 		game.initializeBoard();
-		String player = "X";
+		player = "X";
 		do {
 			System.out.println(game.printBoard());
-			System.out.println("Enter coordinate for rows: ");
-			int row = input.nextInt();
-			System.out.println("Enter coordinate for columns: ");
-			int column = input.nextInt();
-			
-			game.setPlay(row, column, player);
+			getCoordinates();
+			if(row > 2 || row < 0 || column < 0 || column > 2) {
+				System.out.println("\n !Enter value from <0;2>! \n");
+				System.out.println(" Make your choice again \n");
+				row = 0;
+				column = 0;
+				getCoordinates();
+			} else {
+				game.setPlay(row, column, player);
+			}
 			if(game.isGameOver()) {
 				System.out.println(game.printBoard() + "\n" + player + " wins");
 				break;
@@ -25,5 +33,13 @@ public class Main {
 			
 		}while(true);
 	}
+	public static void getCoordinates() {
+		System.out.println("\n You're: " + player);
+		System.out.println("Enter coordinate for rows: ");
+		row = input.nextInt();
+		System.out.println("Enter coordinate for columns: ");
+		column = input.nextInt();
+	}
+	
 
 }
