@@ -28,9 +28,16 @@ public class TicTacToe {
 		String strBoard = "";
 		for(int i = 0; i < COLUMNS; i++) {
 			for(int j = 0; j < ROWS; j++) {
-				strBoard += board[i][j] + "|";
+				if(j != COLUMNS-1) {
+					strBoard += board[i][j] + "|";
+				} else {
+					strBoard += board[i][j];
+				}
 			}
-			strBoard += "\n---+---+---\n";
+			if(i != COLUMNS -1) {
+				strBoard += "\n---+---+---\n";
+			}
+			
 		}
 		return strBoard;
 	}
